@@ -64,21 +64,21 @@
 
     // First Light Object
     var firstLightObjectGeometry = new THREE.BoxGeometry ( 1, 1, 1 );
-    var firstLightObjectMaterial = new THREE.MeshLambertMaterial ( { color: 0xff0000, wireframe: false });
+    var firstLightObjectMaterial = new THREE.MeshLambertMaterial ( { color: 0xFF8C00, wireframe: false });
     var firstLightObjectCube = new THREE.Mesh( firstLightObjectGeometry, firstLightObjectMaterial)
     firstLightObjectCube.position.z = 5;
     scene.add( firstLightObjectCube );
 
     // Second Light Object
     var secondLightObjectGeometry = new THREE.BoxGeometry ( 1, 1, 1 );
-    var secondLightObjectMaterial = new THREE.MeshLambertMaterial ( { color: 0x0000FF, wireframe: false });
+    var secondLightObjectMaterial = new THREE.MeshLambertMaterial ( { color: 0xFF0000, wireframe: false });
     var secondLightObjectCube = new THREE.Mesh( secondLightObjectGeometry, secondLightObjectMaterial)
     secondLightObjectCube.position.z = 5;
     scene.add( secondLightObjectCube );
 
     // Third Light Object
     var thirdLightObjectGeometry = new THREE.BoxGeometry ( 1, 1, 1 );
-    var thirdLightObjectMaterial = new THREE.MeshLambertMaterial ( { color: 0x00FF00, wireframe: false });
+    var thirdLightObjectMaterial = new THREE.MeshLambertMaterial ( { color: 0x0000FF, wireframe: false });
     var thirdLightObjectCube = new THREE.Mesh( thirdLightObjectGeometry, thirdLightObjectMaterial)
     thirdLightObjectCube.position.z = 5;
     scene.add( thirdLightObjectCube );
@@ -116,13 +116,13 @@
     var ambientLight = new THREE.AmbientLight( 0xFFFFFF, 0.8 );
     scene.add( ambientLight );
 
-    var light1 = new THREE.PointLight( 0xff0000, 50, 50 );
+    var light1 = new THREE.PointLight( 0xFF8C00, 50, 50 );
     scene.add( light1 );
 
-    var light2 = new THREE.PointLight (0x0000FF, 50, 50 );
+    var light2 = new THREE.PointLight ( 0xFF0000, 50, 50 );
     scene.add( light2 );
 
-    var light3 = new THREE.PointLight( 0x00FF00, 50, 50 );
+    var light3 = new THREE.PointLight( 0x0000FF, 50, 50 );
     scene.add( light3 );
 
     // Render
