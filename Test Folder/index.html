@@ -26,6 +26,7 @@
   import * as THREE from './three.module.js';
   import {VRButton} from './VRButton.js';
   document.body.appendChild( VRButton.createButton( renderer ) );
+  renderer.xr.enabled = true;
 
     // Create Scene
     var scene = new THREE.Scene( );
@@ -162,7 +163,15 @@
       thirdLightObjectCube.position.x = Math.sin( time * 0.7) * 18;
       thirdLightObjectCube.position.y = Math.cos( time * 0.3) * 14;
       thirdLightObjectCube.position.z = Math.sin( time * 0.5) * 10;
+
+
     }
+
+    renderer.setAnimationLoop( function () {
+
+renderer.render( scene, camera );
+
+} );
     animate( );
   </script>
 </body>
