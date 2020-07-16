@@ -1,3 +1,4 @@
+<!-- Licensed under a BSD license. See license.html for license -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -34,7 +35,7 @@ function main() {
   const near = 0.1;
   const far = 50;
   const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-  camera.position.set(0, 1.6, 10);
+  camera.position.set(-15, -15, -15);
 
   const scene = new THREE.Scene();
 
@@ -45,79 +46,23 @@ function main() {
     light.position.set(-1, 2, 4);
     scene.add(light);
   }
-    // Add Axes
-    var axesHelper = new THREE.AxesHelper( 5 );
-    scene.add( axesHelper )
+  var light = new THREE.AmbientLight( 0x404040 ); // soft white light
+scene.add( light );
+  // Create Skybox
+  var geometry = new THREE.CubeGeometry( 100, 100, 100 )
+  var cubeMaterials = 
+  [
+    new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader( ).load( "img/Front.png" ), side: THREE.DoubleSide } ),
+    new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader( ).load( "img/Back.png" ), side: THREE.DoubleSide } ),
+    new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader( ).load( "img/Top.png" ), side: THREE.DoubleSide } ),
+    new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader( ).load( "img/Bottom.png" ), side: THREE.DoubleSide } ),
+    new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader( ).load( "img/Right.png" ), side: THREE.DoubleSide } ),
+    new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader( ).load( "img/Left.png" ), side: THREE.DoubleSide } )
+  ];
+  var cubeMaterial = new THREE.MeshFaceMaterial( cubeMaterials );
+  var cube = new THREE.Mesh( geometry, cubeMaterial );
+  scene.add( cube );
 
-    // Add Cube
-    var geometry = new THREE.BoxGeometry( 2, 2, 2 );
-    var cubeMaterials = 
-    [
-      new THREE.MeshBasicMaterial( { color: 0xF00000, side: THREE.DoubleSide } ), // RIGHT SIDE
-      new THREE.MeshBasicMaterial( { color: 0x0F0000, side: THREE.DoubleSide } ), // LEFT SIDE
-      new THREE.MeshBasicMaterial( { color: 0x00F000, side: THREE.DoubleSide } ), // TOP SIDE
-      new THREE.MeshBasicMaterial( { color: 0x000F00, side: THREE.DoubleSide } ), // BOTTOM SIDE
-      new THREE.MeshBasicMaterial( { color: 0x0000F0, side: THREE.DoubleSide } ), // FRONT SIDE
-      new THREE.MeshBasicMaterial( { color: 0x00000F, side: THREE.DoubleSide } ), // BACK SIDE
-    ]
-
-    var material = new THREE.MeshFaceMaterial ( cubeMaterials );
-    var cube = new THREE.Mesh( geometry, material );
-    scene.add( cube ) ;
-
-    // Position Cube
-    cube.position.x = 0;
-    cube.position.y = 1.6;
-    cube.position.z = 0;
-
-    // Add 'Room'
-        // Floor
-        var floorGeometry = new THREE.CubeGeometry( 10, 1, 10 );
-        var floorMaterial = new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader( ).load( 'img/Floor.png' ), side: THREE.DoubleSide } );
-        var floorCube = new THREE.Mesh( floorGeometry, floorMaterial );
-        
-        scene.add( floorCube );
-
-        // Position Floor
-        floorCube.position.x = 0;
-        floorCube.position.y = -5;
-        floorCube.position.z = -2;
-    
-        // Ceiling
-        var ceilingGeometry = new THREE.CubeGeometry( 10, 1, 10 );
-        var ceilingMaterial = new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader( ).load( 'img/Ceiling.png'), side: THREE.DoubleSide } );
-        var ceilingCube = new THREE.Mesh( ceilingGeometry, ceilingMaterial );
-        
-        scene.add( ceilingCube );
-
-        // Position Ceiling
-        ceilingCube.position.x = 0;
-        ceilingCube.position.y = 5;
-        ceilingCube.position.z = -2;
-
-        // Left Wall
-        var leftWallGeometry = new THREE.CubeGeometry( 1, 10, 10 );
-        var leftWallMaterial = new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader( ).load( 'img/LeftWall.png'), side: THREE.DoubleSide } );
-        var leftWallCube = new THREE.Mesh( leftWallGeometry, leftWallMaterial );
-        
-        scene.add( leftWallCube );
-        
-        // Position Left Wall
-        leftWallCube.position.x = -4;
-        leftWallCube.position.y = 1.6;
-        leftWallCube.position.z = 0;
-
-        // Right Wall
-        var rightWallGeometry = new THREE.CubeGeometry( 1, 10, 10 );
-        var rightWallMaterial = new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader( ).load( 'img/RightWall.png'), side: THREE.DoubleSide } );
-        var rightWallCube = new THREE.Mesh( rightWallGeometry, rightWallMaterial );
-        
-        scene.add( rightWallCube ); 
-
-        // Position Left Wall
-        rightWallCube.position.x = 4;
-        rightWallCube.position.y = 1.6;
-        rightWallCube.position.z = 0;
 
     // Correct Display Size
   function resizeRendererToDisplaySize(renderer) {
@@ -140,8 +85,8 @@ function main() {
       camera.aspect = canvas.clientWidth / canvas.clientHeight;
       camera.updateProjectionMatrix();
     }
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
+    //cube.rotation.x += 0.01;
+    //cube.rotation.y += 0.01;
 
     renderer.render(scene, camera);
   }
